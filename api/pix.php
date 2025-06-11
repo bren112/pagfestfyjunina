@@ -86,12 +86,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     // Exibir o formulário apenas com CPF e descrição
     echo '<div class="form-container">
-            <h2>Pagamento via PIX</h2>
+    <div class="imagem" style="display:flex; justify-content:center">
+        <img src="./bandeira.png" alt="" srcset="" style="width:18pc;">
+    </div>
+    
             <form method="POST" action="">
                 <label for="cpf">CPF:</label>
                 <input type="text" id="cpf" name="cpf" required placeholder="Seu CPF"><br><br>
 
-           <label for="descricao">Nome completo + telefone:</label>
+           <label for="descricao">Nome Completo & Telefone:</label>
 <textarea id="descricao" name="descricao" required placeholder="Ex: João da Silva 11999998888" rows="2" cols="40"></textarea><br><br>
 
                 <input type="submit" value="Realizar Pagamento">
@@ -101,72 +104,131 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <style>
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    color: #333;
+<style>
+/* Reset básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to bottom, #fff0c1, #ffdb99);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: #4b2800;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Bandeirinhas no topo */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: url('https://cdn.pixabay.com/photo/2017/06/02/21/53/festa-junina-2362727_960_720.png') repeat-x;
+  background-size: contain;
+  z-index: 1;
+}
+
+/* Container do formulário */
 .form-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background: #fff8e1;
+  border: 4px dashed #ff9800;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 h2 {
-    color: #444;
-    font-size: 1.8em;
-    margin-bottom: 30px;
+  font-size: 2rem;
+  color: #bf360c;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 0 #fff;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
 }
 
-form label {
-    font-size: 1.2em;
-    color: #555;
-    margin-bottom: 5px;
+label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #5d4037;
 }
 
-form input[type="text"],
-form input[type="submit"] {
-    width: 100%;
-    max-width: 450px;
-    padding: 12px;
-    font-size: 1em;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid #ffb74d;
+  background: #fffaf0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-form input[type="text"]:focus {
-    border-color: #00aaff;
-    outline: none;
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #ff5722;
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.4);
+  outline: none;
 }
 
-form input[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+textarea {
+  min-height: 80px;
+  resize: vertical;
 }
 
-form input[type="submit"]:hover {
-    background-color: #0056b3;
+input[type="submit"] {
+  background: linear-gradient(90deg, #ff9800, #f57c00);
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.5);
+  transition: background 0.3s ease, transform 0.2s ease;
 }
+
+input[type="submit"]:hover {
+  background: linear-gradient(90deg, #e65100, #bf360c);
+  transform: scale(1.02);
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1.5rem 1rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  input[type="submit"] {
+    font-size: 1rem;
+  }
+}
+
 </style>
 <script>
     
